@@ -31,7 +31,20 @@ Crafty.c('ProfRexVonScience', {
       .fourway(2)
       .stopOnSolids()
       .onHit('ShipPiece', this.pickUpPiece)
-      .color('rgb(44, 103, 0)');
+      .color('rgb(44, 103, 0)')
+      .bind("keydown", function(e) {
+        if(e.keyCode === Crafty.keys.SP) {
+          if(!this.shoot) {
+            this.shoot = true;
+            this.delay(function() {
+                this.shoot = false;
+            }, 100);
+
+            // create bullet to be shot
+          }
+        }
+      };
+
   },
 
   stopOnSolids: function() {
@@ -138,6 +151,23 @@ Crafty.c('Commet', {
       .color('rgb(0, 0, 5)');
   }
 });
+
+// Shooting things
+
+Crafty.c('Projectile', {
+  projectile: function(dir) {
+    this.bind('EnterFrame', function() {
+      this.move(dir, 15);
+      if(this.x > Game.width() || this.y > Game.height() || this.x < 0 || this.y < 0) {
+        this.destroy();
+      }
+    });
+    return this;
+  }
+});
+
+// build more general laser beam element here
+Crafty.e("2D, DOM, color, Projectile").attr({x: bx, y: this.y + 31, w: 5, h: 2, z:50}).color("rgb(250,0,0)").bullet(dir);
 
 // World things
 
