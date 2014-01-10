@@ -27,10 +27,11 @@ Crafty.c('Actor', {
 // the player!
 Crafty.c('ProfRexVonScience', {
   init: function() {
-    this.requires('Actor, Fourway, Collision')
+    this.requires('Actor, Fourway, Collision, Color')
       .fourway(2)
       .stopOnSolids()
       .onHit('ShipPiece', this.pickUpPiece)
+      .color('rgb(44, 103, 0)');
   },
 
   stopOnSolids: function() {
@@ -152,5 +153,12 @@ Crafty.c('Rock', {
   init: function() {
     this.requires('Actor, Solid, Color')
       .color('rgp(241, 239, 226)');
-  },
+  }
+});
+
+Crafty.c('Fern', {
+  init: function() {
+    this.requires('Actor, Solid, Color')
+      .color('rgp(146, 205, 0)');
+  }
 });
