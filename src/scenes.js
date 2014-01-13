@@ -49,6 +49,9 @@ Crafty.scene('Area1', function() {
         var tree_or_rock = (Math.random() > 0.3) ? 'Tree' : 'Rock';
         Crafty.e(tree_or_rock).at(x, y);
         this.occupied[x][y] = true;
+      } else if (Math.random() < 0.005) {
+        Crafty.e('LittleMammal').at(x, y);
+        this.occupied[x][y] = true;
       }
     }
   }

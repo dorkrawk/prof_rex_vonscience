@@ -120,14 +120,35 @@ Crafty.c('FuzzyDice', {
 
 Crafty.c('Mob', {
   init: function() {
-    this.requires('Actor, Solid, Color');
+    this.requires('Actor, Solid, Collision, Color');
   }
 });
 
 Crafty.c('LittleMammal', {
   init: function() {
     this.requires('Mob')
-      .color('rgb(128, 102, 65)');
+      .color('rgb(128, 102, 65)')
+      .redirectOnSolid();
+    this.v = 5; // speed of mob
+    this.bind('EnterFrame', this.doMotion);
+  },
+
+  doMotion: function() {
+    if (Math.random() < 0.9) {
+      this.x = this.x + this.v;
+    } else {
+      this.y = this.y + this.v;
+    }
+  },
+
+  redirectOnSolid: function() {
+    this.onHit('Solid', this.redirect);
+
+    return this;
+  },
+
+  redirect: function() {
+    this.v = -this.v;
   }
 });
 
