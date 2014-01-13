@@ -43,7 +43,7 @@ Crafty.c('ProfRexVonScience', {
             // create bullet to be shot
           }
         }
-      };
+      });
 
   },
 
@@ -167,7 +167,7 @@ Crafty.c('Projectile', {
 });
 
 // build more general laser beam element here
-Crafty.e("2D, DOM, color, Projectile").attr({x: bx, y: this.y + 31, w: 5, h: 2, z:50}).color("rgb(250,0,0)").bullet(dir);
+//Crafty.e("2D, DOM, color, Projectile").attr({x: bx, y: this.y + 31, w: 5, h: 2, z:50}).color("rgb(250,0,0)").bullet(dir);
 
 // World things
 
