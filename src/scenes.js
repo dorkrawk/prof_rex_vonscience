@@ -82,6 +82,10 @@ Crafty.scene('Area1', function() {
     }
   }
 
+  this.death = this.bind('PlayerDie', function() {
+    Crafty.scene('EverybodyDies');
+  });
+
 });
 
 Crafty.scene('Area2', function() {
@@ -102,6 +106,8 @@ Crafty.scene('CometArea', function() {
 
 Crafty.scene('EverybodyDies', function() {
   // go to this scene if Rex dies in any area
+  Crafty.e('2D, DOM, Text')
+    .text('You failed, now all the dinosaurs die.');
 });
 
 Crafty.scene('Win', function() {

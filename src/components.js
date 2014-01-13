@@ -30,6 +30,7 @@ Crafty.c('ProfRexVonScience', {
     this.requires('Actor, Fourway, Collision, Color')
       .fourway(2)
       .stopOnSolids()
+      .dieOnMobHit()
       .onHit('ShipPiece', this.pickUpPiece)
       .color('rgb(44, 103, 0)')
       .bind("keydown", function(e) {
@@ -59,6 +60,14 @@ Crafty.c('ProfRexVonScience', {
       this.x -= this._movement.x;
       this.y -= this._movement.y;
     }
+  },
+
+  dieOnMobHit: function() {
+    this.onHit('Mob', function() {
+      Crafty.trigger('PlayerDie', this);
+    });
+
+    return this;
   },
 
   pickUpPiece: function(data) {
