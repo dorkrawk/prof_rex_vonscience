@@ -1,7 +1,9 @@
 // Intro screen
 Crafty.scene('Intro', function() {
   Crafty.e('2D, DOM, Text')
-    .text('Welcome to Professor Rex VonScience Saves The World')
+    .text('<h1>Welcome to Professor Rex VonScience Saves The World</h1> (press any key to start)')
+    .attr({ x: 0, y: 100, w: Game.width() })
+    .css($text_css);
 
   // load sprite maps
 
@@ -107,7 +109,15 @@ Crafty.scene('CometArea', function() {
 Crafty.scene('EverybodyDies', function() {
   // go to this scene if Rex dies in any area
   Crafty.e('2D, DOM, Text')
-    .text('You failed, now all the dinosaurs die.');
+    .text('<h2>You failed, now all the dinosaurs die.</h2> (press any key to restart)')
+    .attr({ x: 0, y: 100, w: Game.width() })
+    .css($text_css);
+
+  this.restart_game = this.bind('KeyDown', function() {
+    Crafty.scene('Intro');
+  });
+}, function() {
+  this.unbind('KeyDown', this.restart_game);
 });
 
 Crafty.scene('Win', function() {
