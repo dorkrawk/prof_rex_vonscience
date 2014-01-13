@@ -53,6 +53,32 @@ Crafty.scene('Area1', function() {
     }
   }
 
+  var piece1placed = false
+  var piece2placed = false
+
+  while(!piece1placed && !piece2placed) {
+    if(!piece1placed) {
+      var piece1x = getRandomInt(2, Game.map_grid.width - 2);
+      var piece1y = getRandomInt(2, Game.map_grid.height - 2);
+
+      if(!this.occupied[piece1x][piece1y]) {
+        Crafty.e('RightWing').at(piece1x, piece1y);
+        this.occupied[piece1x][piece1x] = true;
+        piece1placed = true
+      }
+    }
+    if(!piece2placed) {
+      var piece2x = getRandomInt(2, Game.map_grid.width - 2);
+      var piece2y = getRandomInt(2, Game.map_grid.height - 2);
+
+      if(!this.occupied[piece2x][piece2y]) {
+        Crafty.e('LeftWing').at(piece2x, piece2y);
+        this.occupied[piece2x][piece2x] = true;
+        piece2placed = true
+      }
+    }
+  }
+
 });
 
 Crafty.scene('Area2', function() {
